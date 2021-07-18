@@ -1,0 +1,56 @@
+.all_heroes_image {
+    background: url(../img/all_heroes_images.jpg) no-repeat;
+    display: block;
+    width: 100%;
+    height: 150px;
+    border: 1px solid #000;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.game>li, .random_item {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    margin: 20px 12px 20px 12px;
+}
+
+.random_item {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.game, .limits {
+    text-align: center;
+}
+
+.limits {
+    margin: 50% 250px;
+    padding: 30px;
+    background-color: rgb(16, 112, 112);
+    border-radius: 10px;
+}
+
+.item_title {
+    font-size: 20px;
+    text-align: center;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    font-size: 30px;
+}
+
+.black {
+    background: #000;
+}

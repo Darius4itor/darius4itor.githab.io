@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Who</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <ul class="game"></ul>
+    <div class="controls">
+        <div class="random_item">
+            <div id="randomImg" class="all_heroes_image"></div>
+            <span id="randomId" class="item_title"></span>
+        </div>
+        <button class="btn" onclick="init()">New Game</button>
+        <!-- <button class="btn" onclick="reset()">Reset</button> -->
+        <!-- <button class="btn" onclick="newCharacter()">New character</button> -->
+    </div>
+    <div class="limits">
+        <span class="item_title">Start:</span>
+        <input id="startValue" type="number" value="0"/>
+        <br />
+        <span class="item_title">Max:</span>
+        <input id="maxValue" type="number" value="100"/>
+        <button class="btn" onclick="startGame()">Start Game</button>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
