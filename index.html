@@ -15,15 +15,12 @@
             <span id="randomId" class="item_title"></span>
         </div>
         <button class="btn" onclick="init()">New Game</button>
-        <!-- <button class="btn" onclick="reset()">Reset</button> -->
-        <!-- <button class="btn" onclick="newCharacter()">New character</button> -->
     </div>
     <div class="limits">
-        <span class="item_title">Start:</span>
-        <input id="startValue" type="number" value="0"/>
+        <button class="btn" onclick="getSeed()">Generate new seed</button>
         <br />
-        <span class="item_title">Max:</span>
-        <input id="maxValue" type="number" value="100"/>
+        <span class="item_title">Game seed:</span>
+        <input id="friendSeed" type="number"/>
         <button class="btn" onclick="startGame()">Start Game</button>
     </div>
     <script src="js/script.js"></script>
