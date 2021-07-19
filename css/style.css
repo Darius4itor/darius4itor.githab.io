@@ -51,6 +51,12 @@ ul {
     font-size: 30px;
 }
 
+#friendSeed {
+    font-size: 20px;
+    display: block;
+    margin: 0 auto 30px;
+}
+
 .black {
     background: #000;
 }
