@@ -17,10 +17,12 @@
         <button class="btn" onclick="init()">New Game</button>
     </div>
     <div class="limits">
-        <button class="btn" onclick="getSeed()">Generate new seed</button>
+        <span class="item_title">Hero count:</span>
+        <input id="heroCnt" type="number" value = "40"/>
+        <button class="btn" onclick="getSeed()">Generate seed</button>
         <br />
         <span class="item_title">Game seed:</span>
-        <input id="friendSeed" type="number"/>
+        <input id="friendSeed" type="text"/>
         <button class="btn" onclick="startGame()">Start Game</button>
     </div>
     <script src="js/script.js"></script>
