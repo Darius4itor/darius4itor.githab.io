@@ -27,7 +27,6 @@ function reset() {
             items[i].classList.remove("black");
 }
 
-//document.body.onload = addElement;
 document.body.onload = init;
 
 function init() {
@@ -47,8 +46,20 @@ function startGame() {
 }
 
 function addElement() {
-    let seed = document.getElementById("friendSeed").value;    
+    let hexSeed = document.getElementById("friendSeed").value;  
+    let seed = "";
+    for(let i = 0; i < hexSeed.length; i++)
+    {
+        let temp = parseInt(hexSeed[i], 16).toString(2);
+        while (temp.length < 4)
+            temp = "0" + temp;
+        seed += temp;
+    }
+    console.log(seed);
+    
     let counter = 0;
+    let innerCnt = 0;
+    let drawCounter = 0;
     let heroes = (size / 150) * (size / 150) - dels.length;
 
     for(let i = 0; i < size; i+=150)
@@ -57,31 +68,18 @@ function addElement() {
         {
             counter++;            
             if(!dels.includes("" + counter))
-            {
+            {                
                 let pos = "-" + i + "px -" + j + "px";
-                arr.push(new Hero(counter, pos));
+                arr.push(new Hero(innerCnt, pos));
+                
+                if(seed[innerCnt] == "1")
+                {
+                    drawHero(arr[innerCnt], ++drawCounter);
+                }
+
+                innerCnt++;
             }
         }
-    }   
-    
-    let key = 8;
-    counter = 0;
-    let drawCounter = 0;
-    for(let i = 0; i < 8; i++)
-    {        
-        let num = +seed[i];
-        console.log("counter " + counter + "; num " + num);
-        for(let j = 0; j < 5; j++)
-        {           
-            let pos = key*j+num;
-            console.log("do " + pos);
-            while(pos > 26)
-                pos-=27;
-            console.log("posle " + pos);
-            drawCounter++;
-            drawHero(arr[pos+counter], drawCounter);
-        } 
-        counter+=27;        
     }
 
     newCharacter(); 
@@ -93,13 +91,13 @@ function drawHero(hero, drawCounter) {
     let item_img = document.createElement("div");    
     item_img.classList.add("item");
     item_img.classList.add("all_heroes_image");
-    item_img.classList.add("naruto_hero_" + hero.id);
+    item_img.classList.add("naruto_hero_" + drawCounter);
     item_img.style.backgroundPosition = hero.possition;
     item.insertAdjacentElement("afterbegin", item_img);
 
     let text = document.createElement("span");
     text.classList.add("item_title");
-    text.innerHTML = drawCounter + "(" + hero.id + ")";
+    text.innerHTML = drawCounter;
     item.insertAdjacentElement("beforeend", text);
 
     game.insertAdjacentElement("beforeend", item);
@@ -118,11 +116,29 @@ document.addEventListener("click", e =>
 );
 
 function getSeed() {
-    let seed = "";
-    let min = 0, max = 9;
-    for(let i = 0; i < 9; i++)
+    let seed = "0";    
+    let heroCnt = +document.getElementById("heroCnt").value;
+    let min = 0, max = 215;
+    seed = seed.repeat(max + 1);
+    while(heroCnt > 0)
     {
-        seed += Math.floor(Math.random() * (max - min + 1)) + min;
+        let rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        if(seed[rand] == "0")
+        {
+            seed = seed.replaceAt(rand, "1");
+            heroCnt--;
+        }
     }
-    document.getElementById("friendSeed").value = seed;
+    let hexa = "";
+    for(let i = 0; i < max+1; i+=4)
+    {
+        let temp = seed[i] + seed[i+1] + seed[i+2] + seed[i+3];
+        hexa += parseInt(temp, 2).toString(16).toUpperCase();
+    }
+    console.log(seed);
+    document.getElementById("friendSeed").value = hexa;
+}
+
+String.prototype.replaceAt=function(index, replacement) {
+    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 }
